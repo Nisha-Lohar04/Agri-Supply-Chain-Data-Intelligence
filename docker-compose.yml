@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: agri_supply_chain_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: agri_supply_chain
+      POSTGRES_USER: agri_admin
+      POSTGRES_PASSWORD: agri_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
