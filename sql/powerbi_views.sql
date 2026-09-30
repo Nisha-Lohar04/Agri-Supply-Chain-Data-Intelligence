@@ -188,3 +188,27 @@ JOIN products p
 
 JOIN regions r
     ON i.region_id = r.region_id;
+
+-- ============================================================
+-- SALES VIEW WITH DATE DIMENSION
+-- ============================================================
+
+CREATE OR REPLACE VIEW vw_fact_sales_powerbi AS
+SELECT
+    f.*,
+
+    d.year,
+    d.quarter,
+    d.month,
+    d.month_name,
+    d.month_start,
+    d.year_month,
+    d.week_of_year,
+    d.day_of_month,
+    d.day_of_week,
+    d.day_name
+
+FROM vw_fact_sales f
+
+JOIN dim_date d
+    ON f.order_date = d.date_key;
